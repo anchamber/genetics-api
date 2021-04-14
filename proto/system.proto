@@ -1,8 +1,9 @@
 syntax = "proto3";
 
-option go_package = "genetics_system/proto;genetics_system";
+option go_package = "github.com/anchamber/genetics-system/proto";
 
 package genetics_system;
+import "api.proto";
 
 service SystemService {
   rpc GetSystems(GetSystemsRequest) returns (GetSystemsResponse) {}
@@ -28,36 +29,14 @@ enum SystemType {
   TECHNIPLAST = 2;
 }
 
-message ErrorResponse {
-  ErrorCode code = 1;
-  repeated string messages = 2;
-}
-enum ErrorCode {
-  UNKNOWN = 0;
-  NOT_FOUND = 1;
-}
-
-message Filter {
-  string key = 1;
-  Operator operator = 2;
-  string value = 3;
-}
-enum Operator {
-  EQ = 0;
-  GREATER = 1;
-  SMALLLER = 2;
-  GREATER_EQ = 3;
-  SMALLER_EQ = 4;
-  CONTAINS = 5;
-}
-
 message GetSystemsRequest {
-  repeated Filter filters = 1;
+  repeated api.Filter filters = 1;
+  api.Pagination pageination = 2;
 }
 message GetSystemsResponse {
   oneof response {
     Systems systems = 1;
-    ErrorResponse error = 2;
+    api.ErrorResponse error = 2;
   }
 }
 
@@ -68,7 +47,7 @@ message GetSystemRequest {
 message GetSystemResponse {
   oneof response {
     System system = 1;
-    ErrorResponse error = 2;
+    api.ErrorResponse error = 2;
   }
 }
 
@@ -78,7 +57,7 @@ message CreateSystemRequest {
 message CreateSystemResponse {
   oneof response {
     System systems = 1;
-    ErrorResponse error = 2;
+    api.ErrorResponse error = 2;
   }
 }
 
@@ -88,7 +67,7 @@ message UpdateSystemRequest {
 message UpdateSystemResponse {
   oneof response {
     System systems = 1;
-    ErrorResponse error = 2;
+    api.ErrorResponse error = 2;
   }
 }
 
@@ -98,6 +77,6 @@ message DeleteSystemRequest {
 message DeleteSystemResponse {
   oneof response {
     System systems = 1;
-    ErrorResponse error = 2;
+    api.ErrorResponse error = 2;
   }
 }
