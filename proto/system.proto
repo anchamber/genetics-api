@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+option go_package = "genetics_system/proto;genetics_system";
+
+package genetics_system;
+
+service SystemService {
+  rpc GetSystems(GetSystemsRequest) returns (GetSystemsResponse) {}
+  rpc GetSystem(GetSystemRequest) returns (GetSystemResponse) {}
+  rpc CreateSystem(CreateSystemRequest) returns (CreateSystemResponse) {}
+  rpc UpdateSystem(UpdateSystemRequest) returns (UpdateSystemResponse) {}
+  rpc DeleteSystem(DeleteSystemRequest) returns (DeleteSystemResponse) {}
+}
+
+message System {
+  string name = 1;
+  string location = 2;
+  SystemType type = 3;
+  int32 cleaning_interval = 4;
+  int64 last_cleaned = 5;
+}
+message Systems {
+  repeated System systems = 1;
+}
+enum SystemType {
+  UNKOWN = 0;
+  GLASS = 1;
+  TECHNIPLAST = 2;
+}
+
+message ErrorResponse {
+  ErrorCode code = 1;
+  repeated string messages = 2;
+}
+enum ErrorCode {
+  UNKNOWN = 0;
+  NOT_FOUND = 1;
+}
+
+message Filter {
+  string key = 1;
+  Operator operator = 2;
+  string value = 3;
+}
+enum Operator {
+  EQ = 0;
+  GREATER = 1;
+  SMALLLER = 2;
+  GREATER_EQ = 3;
+  SMALLER_EQ = 4;
+  CONTAINS = 5;
+}
+
+message GetSystemsRequest {
+  repeated Filter filters = 1;
+}
+message GetSystemsResponse {
+  oneof response {
+    Systems systems = 1;
+    ErrorResponse error = 2;
+  }
+}
+
+
+message GetSystemRequest {
+  string name = 1;
+}
+message GetSystemResponse {
+  oneof response {
+    System system = 1;
+    ErrorResponse error = 2;
+  }
+}
+
+message CreateSystemRequest {
+  System system = 1;
+}
+message CreateSystemResponse {
+  oneof response {
+    System systems = 1;
+    ErrorResponse error = 2;
+  }
+}
+
+message UpdateSystemRequest {
+  System system = 1;
+}
+message UpdateSystemResponse {
+  oneof response {
+    System systems = 1;
+    ErrorResponse error = 2;
+  }
+}
+
+message DeleteSystemRequest {
+  string name = 1;
+}
+message DeleteSystemResponse {
+  oneof response {
+    System systems = 1;
+    ErrorResponse error = 2;
+  }
+}
