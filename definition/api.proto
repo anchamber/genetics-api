@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/anchamber/genetics-api/api";
+option go_package = "github.com/anchamber/genetics-api/proto";
 
 package api;
 
@@ -16,7 +16,12 @@ enum ErrorCode {
 message Filter {
   string key = 1;
   Operator operator = 2;
-  string value = 3;
+  oneof value {
+    string s = 3;
+    int64 i = 4;
+    double d = 5;
+    bool b = 6;
+  }
 }
 enum Operator {
   EQ = 0;
@@ -28,7 +33,6 @@ enum Operator {
 }
 
 message Pagination {
-  int32 number_of_results = 1;
-  string next = 2;
-  string previous = 3;
+  uint32 limit = 1;
+  uint64 offset = 2;
 }
