@@ -6,19 +6,14 @@ package genetics_system;
 import "api.proto";
 
 service SystemService {
-  rpc GetSystems(GetSystemsRequest) returns (GetSystemsResponse) {}
-  rpc GetSystem(GetSystemRequest) returns (GetSystemResponse) {}
+  rpc GetSystems(GetSystemsRequest) returns (stream SystemResponse) {}
+  rpc GetSystem(GetSystemRequest) returns (SystemResponse) {}
   rpc CreateSystem(CreateSystemRequest) returns (CreateSystemResponse) {}
   rpc UpdateSystem(UpdateSystemRequest) returns (UpdateSystemResponse) {}
   rpc DeleteSystem(DeleteSystemRequest) returns (DeleteSystemResponse) {}
 }
 
 message System {
-  string name = 1;
-  string location = 2;
-  SystemType type = 3;
-  int32 cleaning_interval = 4;
-  int64 last_cleaned = 5;
 }
 message Systems {
   repeated System systems = 1;
@@ -33,50 +28,39 @@ message GetSystemsRequest {
   repeated api.Filter filters = 1;
   api.Pagination pageination = 2;
 }
-message GetSystemsResponse {
-  oneof response {
-    Systems systems = 1;
-    api.ErrorResponse error = 2;
-  }
-}
-
-
 message GetSystemRequest {
   string name = 1;
 }
-message GetSystemResponse {
-  oneof response {
-    System system = 1;
-    api.ErrorResponse error = 2;
-  }
+message SystemResponse {
+  string name = 1;
+  string location = 2;
+  SystemType type = 3;
+  int32 cleaning_interval = 4;
+  int64 last_cleaned = 5;
 }
 
 message CreateSystemRequest {
-  System system = 1;
+  string name = 1;
+  string location = 2;
+  SystemType type = 3;
+  int32 cleaning_interval = 4;
+  int64 last_cleaned = 5;
 }
 message CreateSystemResponse {
-  oneof response {
-    System systems = 1;
-    api.ErrorResponse error = 2;
-  }
 }
 
 message UpdateSystemRequest {
-  System system = 1;
+  string name = 1;
+  string location = 2;
+  SystemType type = 3;
+  int32 cleaning_interval = 4;
+  int64 last_cleaned = 5;
 }
 message UpdateSystemResponse {
-  oneof response {
-    System systems = 1;
-    api.ErrorResponse error = 2;
-  }
 }
 
 message DeleteSystemRequest {
   string name = 1;
 }
 message DeleteSystemResponse {
-  oneof response {
-    System systems = 1;
-    api.ErrorResponse error = 2;
-  }
 }
