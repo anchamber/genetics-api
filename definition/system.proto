@@ -35,16 +35,18 @@ message SystemResponse {
   string name = 1;
   string location = 2;
   SystemType type = 3;
-  int32 cleaning_interval = 4;
-  int64 last_cleaned = 5;
+  string responsible = 4;
+  int32 cleaning_interval = 5;
+  int64 last_cleaned = 6;
 }
 
 message CreateSystemRequest {
   string name = 1;
   string location = 2;
   SystemType type = 3;
-  int32 cleaning_interval = 4;
-  int64 last_cleaned = 5;
+  string responsible = 4;
+  int32 cleaning_interval = 5;
+  int64 last_cleaned = 6;
 }
 message CreateSystemResponse {
 }
@@ -53,8 +55,9 @@ message UpdateSystemRequest {
   string name = 1;
   string location = 2;
   SystemType type = 3;
-  int32 cleaning_interval = 4;
-  int64 last_cleaned = 5;
+  string responsible = 4;
+  int32 cleaning_interval = 5;
+  int64 last_cleaned = 6;
 }
 message UpdateSystemResponse {
 }
