@@ -32,12 +32,13 @@ message GetSystemRequest {
   string name = 1;
 }
 message SystemResponse {
-  string name = 1;
-  string location = 2;
-  SystemType type = 3;
-  string responsible = 4;
-  int32 cleaning_interval = 5;
-  int64 last_cleaned = 6;
+  int64 id = 1;
+  string name = 2;
+  string location = 3;
+  SystemType type = 4;
+  string responsible = 5;
+  int32 cleaning_interval = 6;
+  int64 last_cleaned = 7;
 }
 
 message CreateSystemRequest {
