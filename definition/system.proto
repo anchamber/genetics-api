@@ -19,7 +19,7 @@ message Systems {
   repeated System systems = 1;
 }
 enum SystemType {
-  UNKOWN = 0;
+  UNKNOWN = 0;
   GLASS = 1;
   TECHNIPLAST = 2;
 }
