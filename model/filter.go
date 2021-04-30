@@ -13,7 +13,7 @@ type Operator int32
 const (
 	EQ         Operator = Operator(proto.Operator_EQ)
 	GREATER    Operator = Operator(proto.Operator_GREATER)
-	SMALLLER   Operator = Operator(proto.Operator_SMALLLER)
+	SMALLER    Operator = Operator(proto.Operator_SMALLER)
 	GREATER_EQ Operator = Operator(proto.Operator_GREATER_EQ)
 	SMALLER_EQ Operator = Operator(proto.Operator_SMALLER_EQ)
 	CONTAINS   Operator = Operator(proto.Operator_CONTAINS)
