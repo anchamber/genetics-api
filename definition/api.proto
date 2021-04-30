@@ -26,7 +26,7 @@ message Filter {
 enum Operator {
   EQ = 0;
   GREATER = 1;
-  SMALLLER = 2;
+  SMALLER = 2;
   GREATER_EQ = 3;
   SMALLER_EQ = 4;
   CONTAINS = 5;
