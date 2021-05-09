@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "github.com/anchamber/genetics-api/proto";
 
-package api;
+package anchamber.genetics.api;
 
 message ErrorResponse {
   ErrorCode code = 1;
