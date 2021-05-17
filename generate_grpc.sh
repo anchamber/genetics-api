@@ -11,6 +11,14 @@ protoc \
   system.proto
 
 protoc \
+  --go_opt=module=github.com/anchamber/genetics-tank \
+  --go_out=../genetics-tank \
+  --go-grpc_opt=module=github.com/anchamber/genetics-tank \
+  --go-grpc_out=../genetics-tank \
+  --proto_path=${PROTO_FOLDER} \
+  tank.proto
+
+protoc \
   --go_opt=module=github.com/anchamber/genetics-api \
   --go_out=. \
   --go-grpc_opt=module=github.com/anchamber/genetics-api \

@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+option go_package = "github.com/anchamber/genetics-tank/proto";
+
+package anchamber.genetics;
+import "api.proto";
+import "google/protobuf/field_mask.proto";
+
+service TankService {
+  rpc StreamTanks(StreamTanksRequest) returns (stream TankResponse) {}
+  rpc GetTank(GetTankRequest) returns (TankResponse) {}
+  rpc CreateTank(CreateTankRequest) returns (CreateTankResponse) {}
+  rpc UpdateTank(UpdateTankRequest) returns (UpdateTankResponse) {}
+  rpc DeleteTank(DeleteTankRequest) returns (DeleteTankResponse) {}
+}
+
+message Tank {
+  string system = 1;
+  uint32 number = 2;
+  bool active = 3;
+  uint32 size = 4;
+  uint32 fishCount = 5;
+}
+
+message StreamTanksRequest {
+  repeated api.Filter filters = 1;
+  api.Pagination pageination = 2;
+}
+
+message GetTankRequest {
+  uint32 number = 1;
+}
+message TankResponse {
+  int64 id = 1;
+  string system = 2;
+  uint32 number = 3;
+  bool active = 4;
+  uint32 size = 5;
+  uint32 fishCount = 6;
+}
+
+message GetTankStatsRequest {}
+message GetTankStatsResponse {
+  int64 countOverall = 1;
+  int64 countCleaningSoon = 2;
+  int64 countCleaningRequired = 3;
+}
+
+message CreateTankRequest {
+  string system = 1;
+  uint32 number = 2;
+  bool active = 3;
+  uint32 size = 4;
+  uint32 fishCount = 5;
+}
+message CreateTankResponse {
+}
+
+message UpdateTankRequest {
+  uint32 number = 1;
+  Tank tank = 2;
+  google.protobuf.FieldMask mask = 3;
+}
+message UpdateTankResponse {
+}
+
+message DeleteTankRequest {
+  uint32 number = 1;
+}
+message DeleteTankResponse {
+}
