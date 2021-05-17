@@ -7,7 +7,7 @@ import "api.proto";
 import "google/protobuf/field_mask.proto";
 
 service SystemService {
-  rpc StreamSystems(GetSystemsRequest) returns (stream SystemResponse) {}
+  rpc StreamSystems(StreamSystemsRequest) returns (stream SystemResponse) {}
   rpc GetSystem(GetSystemRequest) returns (SystemResponse) {}
   rpc CreateSystem(CreateSystemRequest) returns (CreateSystemResponse) {}
   rpc UpdateSystem(UpdateSystemRequest) returns (UpdateSystemResponse) {}
@@ -31,7 +31,7 @@ enum SystemType {
   TECHNIPLAST = 2;
 }
 
-message GetSystemsRequest {
+message StreamSystemsRequest {
   repeated api.Filter filters = 1;
   api.Pagination pageination = 2;
 }
